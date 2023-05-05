@@ -3,26 +3,31 @@ import "./App.css";
 import WeatherCard from "./components/WeatherCard";
 
 const App = () => {
+  const [errorMessage, setErrorMessage] = useState("");
+  const [city, setCity] = useState("");
+  const [data, setData] = useState({});
+  const [validRequest, setValidRequest] = useState(false);
+
   const fetchWeather = () => {
     const API_KEY = "e77fef6f1f5549e98fe112224230505";
     const baseUrl = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}`;
+
     fetch(baseUrl)
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 400) {
+          throw new Error();
+        }
+        return response.json();
+      })
       .then((data) => {
         setData(data);
         setValidRequest(true);
       })
       .catch((error) => {
+        setErrorMessage("Cannot find the temperature for this city :(");
         setValidRequest(false);
-        console.log(error);
       });
   };
-
-  const [city, setCity] = useState("");
-  const [data, setData] = useState({});
-  const [validRequest, setValidRequest] = useState(false);
-
-  console.log(validRequest);
 
   return (
     <div className="container-fluid w-25">
@@ -39,9 +44,7 @@ const App = () => {
         </button>
       </div>
 
-      {validRequest ? (
-        <WeatherCard data={data}/>
-      ) : null}
+      {validRequest ? <WeatherCard data={data} /> : errorMessage}
     </div>
   );
 };
