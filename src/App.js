@@ -25,12 +25,13 @@ const App = () => {
       })
       .catch((error) => {
         setErrorMessage("Cannot find the temperature for this city :(");
+        document.body.style = "background:white;";
         setValidRequest(false);
       });
   };
 
   return (
-    <div className="container-fluid w-25">
+    <div className="container-fluid">
       <div className="input-group mb-3">
         <span className="input-group-text">&#127968;</span>
         <input

@@ -1,11 +1,25 @@
+import { useEffect } from "react";
+import "./WeatherCard.css";
+
 const WeatherCard = ({ data }) => {
   console.log(data);
+
+  useEffect(() => {
+    const timeOfDay = data.current.condition.icon;
+    if (timeOfDay.includes("day")) {
+      document.body.style = "background:linear-gradient(to bottom, #9be2fe 0%, #67d1fb 100%);";
+    } else if (timeOfDay.includes("night")) {
+      document.body.style = "background:black;";
+    } else {
+      document.body.style = "background:white;";
+    }
+  }, [data]);
 
   return (
     <div className="card">
       <img
         src={data.current.condition.icon}
-        style={{ width: "20%" }}
+        style={{ width: "15%" }}
         className="card-img-top"
       ></img>
       <div className="card-body">
