@@ -10,7 +10,7 @@ const App = () => {
 
   const fetchWeather = () => {
     const API_KEY = "e77fef6f1f5549e98fe112224230505";
-    const baseUrl = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}`;
+    const baseUrl = `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}`;
 
     fetch(baseUrl)
       .then((response) => {
