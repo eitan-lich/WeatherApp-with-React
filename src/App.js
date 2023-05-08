@@ -33,7 +33,9 @@ const App = () => {
   return (
     <div className="container-fluid">
       <div className="input-group mb-3">
-        <span className="input-group-text">&#127968;</span>
+        <a href="/">
+          <span className="input-group-text">&#127968;</span>
+        </a>
         <input
           type="text"
           className="form-control"

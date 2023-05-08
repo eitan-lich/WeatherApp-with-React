@@ -7,11 +7,11 @@ const WeatherCard = ({ data }) => {
   useEffect(() => {
     const timeOfDay = data.current.condition.icon;
     if (timeOfDay.includes("day")) {
-      document.body.style = "background:linear-gradient(to bottom, #9be2fe 0%, #67d1fb 100%);";
+      document.body.style = "background-color:rgba(207, 232, 255, 1);";
     } else if (timeOfDay.includes("night")) {
-      document.body.style = "background:black;";
+      document.body.style = "background:rgba(44, 50, 56, 0.99);";
     } else {
-      document.body.style = "background:white;";
+      document.body.style = "background:rgba(230, 230, 230, 1);";
     }
   }, [data]);
 
